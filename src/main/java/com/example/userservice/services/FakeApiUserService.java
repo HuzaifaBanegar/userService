@@ -115,8 +115,39 @@ public class FakeApiUserService implements UserService {
     }
 
     @Override
-    public User createUser(Long userId, String username, String email, String password, String phone, String city, String street, int number, String zipcode, String firstname, String lastname) {
-        return null;
+    public User createUser(String username, String email, String password, String phone, String city, String street, int number, String zipcode, String firstname, String lastname) {
+        final String URL = "https://fakestoreapi.com/users";
+
+        try {
+            User userDTO = new User();
+            userDTO.setUsername(username);
+            userDTO.setEmail(email);
+            userDTO.setPassword(password);
+            userDTO.setPhone(phone);
+
+            Address address = new Address();
+            address.setCity(city);
+            address.setStreet(street);
+            address.setNumber(number);
+            address.setZipcode(zipcode);
+            userDTO.setAddress(address);
+
+            Name name = new Name();
+            name.setFirstname(firstname);
+            name.setLastname(lastname);
+            userDTO.setName(name);
+
+            HttpEntity<User> requestEntity = new HttpEntity<>(userDTO);
+            ResponseEntity<User> response = restTemplate.postForEntity(URL, requestEntity, User.class);
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                return response.getBody();
+            } else {
+                throw new RuntimeException("Failed to create user: " + response.getStatusCode());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

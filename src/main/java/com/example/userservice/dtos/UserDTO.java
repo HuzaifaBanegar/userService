@@ -108,20 +108,8 @@ public class UserDTO {
         user.setUsername(getUsername());
         user.setPassword(getPassword());
         user.setPhone(getPhone());
-
-        Address address = new Address();
-        address.setCity(getAddress().getCity());
-        address.setStreet(getAddress().getStreet());
-        address.setNumber(getAddress().getNumber());
-        address.setZipcode(getAddress().getZipcode());
-
-        user.setAddress(address);
-
-        Name name = new Name();
-        name.setFirstname(getName().getFirstname());
-        name.setLastname(getName().getLastname());
-
-        user.setName(name);
+        user.setAddress(getAddress());
+        user.setName(getName());
 
         return user;
 

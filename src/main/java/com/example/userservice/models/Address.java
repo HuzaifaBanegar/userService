@@ -11,6 +11,7 @@ public class Address extends BaseModel {
     private int number;
     private String zipcode;
 
+
     public String getCity() {
         return city;
     }

@@ -26,7 +26,7 @@ public class DatabaseUserService implements UserService {
 
 
     @Override
-    public User createUser(Long userId, String username, String email, String password, String phone, String city, String street, int number, String zipcode, String firstname, String lastname) {
+    public User createUser(String username, String email, String password, String phone, String city, String street, int number, String zipcode, String firstname, String lastname) {
         return null;
     }
 

@@ -1,7 +1,10 @@
 package com.example.userservice.controllers;
 
+import com.example.userservice.dtos.CreateUserDTO;
 import com.example.userservice.dtos.UserDTO;
 import com.example.userservice.errorHandler.UserNotFound;
+import com.example.userservice.models.Address;
+import com.example.userservice.models.Name;
 import com.example.userservice.models.User;
 import com.example.userservice.services.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +28,14 @@ public class UserController {
     @GetMapping("/users/{id}")
     public User getUser(@PathVariable("id") Long id) throws UserNotFound {
         return userService.getUser(id);
+    }
+    //String username, String email, String password, String phone, String city, String street, int number, String zipcode, String firstname, String lastname
+    @PostMapping("/users")
+    public User createUser(@RequestBody CreateUserDTO userDto){
+
+        return userService.createUser(userDto.getUsername(), userDto.getEmail(), userDto.getPassword(), userDto.getPhone(),
+                userDto.getCity(), userDto.getStreet(), userDto.getNumber(), userDto.getZipcode(),
+                userDto.getFirstname(), userDto.getLastname());
     }
 
     @PutMapping("users/{id}")
