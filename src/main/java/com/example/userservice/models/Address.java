@@ -1,16 +1,18 @@
 package com.example.userservice.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class Address extends BaseModel {
     private String city;
     private String street;
     private int number;
     private String zipcode;
-
 
     public String getCity() {
         return city;
@@ -24,6 +26,7 @@ public class Address extends BaseModel {
     public String getZipcode() {
         return zipcode;
     }
+
 
     public void setCity(String city) {
         this.city = city;

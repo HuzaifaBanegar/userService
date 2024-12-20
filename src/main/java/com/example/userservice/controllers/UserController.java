@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class UserController {
     private UserService userService;
-    public UserController(@Qualifier("fakeApiUserService") UserService userService) {
+    public UserController(@Qualifier("databaseUserService") UserService userService) {
         this.userService = userService;
     }
 
