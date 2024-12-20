@@ -31,7 +31,7 @@ public class DatabaseUserService implements UserService {
     }
 
     @Override
-    public void deleteUser(Long userId) {
-
+    public User deleteUser(Long userId) {
+        return null;
     }
 }

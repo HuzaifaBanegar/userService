@@ -38,7 +38,7 @@ public class UserController {
                 userDto.getFirstname(), userDto.getLastname());
     }
 
-    @PutMapping("users/{id}")
+    @PutMapping("/users/{id}")
     public ResponseEntity<User> partialUpdateUser(
             @PathVariable("id") Long id,
             @RequestBody UserDTO partialUserDTO
@@ -49,5 +49,11 @@ public class UserController {
         } catch (UserNotFound e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @DeleteMapping("/users/{id}")
+    public User deleteUser(@PathVariable("id") Long id){
+        return userService.deleteUser(id);
+
     }
 }

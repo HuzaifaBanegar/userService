@@ -151,7 +151,21 @@ public class FakeApiUserService implements UserService {
     }
 
     @Override
-    public void deleteUser(Long userId) {
+    public User deleteUser(Long userId) {
+       final String URL = "https://fakestoreapi.com/users/" + userId;
 
+       try{
+            ResponseEntity<UserDTO> response = restTemplate.exchange(
+                    URL,
+                    HttpMethod.DELETE,
+                    null,
+                    UserDTO.class
+            );
+            return response.getBody().toUser();
+       } catch (RuntimeException e) {
+           throw new RuntimeException(e);
+       } catch (Exception e) {
+           throw new RuntimeException(e);
+       }
     }
 }
